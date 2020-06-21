@@ -1,0 +1,33 @@
+version: '3'
+services:
+  oracle-db:
+    build: ./oracle-db/
+    hostname: oracle-db
+    ports:
+      - "1521"
+  payara5-java8:
+    build: ./payara5-java8/
+    ports:
+      - "18080:8080"
+      - "18181:8181"
+      - "14848:4848"
+      - "19009:9009"
+    depends_on:
+      - oracle-db
+    environment:
+      WAIT_HOSTS: oracle-db:1521
+      WAIT_HOSTS_TIMEOUT: 600
+      WAIT_SLEEP_INTERVAL: 3
+  payara5-java11:
+    build: ./payara5-java11/
+    ports:
+      - "28080:8080"
+      - "28181:8181"
+      - "24848:4848"
+      - "29009:9009"
+    depends_on:
+      - oracle-db
+    environment:
+      WAIT_HOSTS: oracle-db:1521
+      WAIT_HOSTS_TIMEOUT: 600
+      WAIT_SLEEP_INTERVAL: 3
