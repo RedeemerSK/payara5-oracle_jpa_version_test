@@ -16,7 +16,7 @@ RUN keytool -delete -keystore /opt/payara/appserver/glassfish/domains/production
     keytool -delete -keystore /opt/payara/appserver/glassfish/domains/production/config/cacerts.jks -storepass changeit -alias "equifaxsecureglobalebusinessca1"
 
 # Oracle JDBC driver JAR
-COPY --chown=payara:payara ojdbc8.jar ${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}/lib/ext
+ADD --chown=payara:payara https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/12.2.0.1/ojdbc8-12.2.0.1.jar ${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}/lib/ext
 # Test application WAR
 COPY --chown=payara:payara payara5-oracle_jpa_version_test.war ${DEPLOY_DIR}
 
