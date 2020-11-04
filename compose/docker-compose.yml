@@ -31,3 +31,16 @@ services:
       WAIT_HOSTS: oracle-db:1521
       WAIT_HOSTS_TIMEOUT: 600
       WAIT_SLEEP_INTERVAL: 3
+  payara5-java11-fix:
+    build: ./payara5-java11-fix/
+    ports:
+      - "38080:8080"
+      - "38181:8181"
+      - "34848:4848"
+      - "39009:9009"
+    depends_on:
+      - oracle-db
+    environment:
+      WAIT_HOSTS: oracle-db:1521
+      WAIT_HOSTS_TIMEOUT: 600
+      WAIT_SLEEP_INTERVAL: 3
